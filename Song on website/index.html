@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yaputya flex</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="music">
+        <p>Artist: Future feat. Drake</p>
+        <h1>Life Is Good</h1>
+        <div class="track">
+          <img src="media/play.svg" width="60px" height="60px" id="playBtn" />
+          <div id="waveform"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var playBtn = document.getElementById('playBtn');
+
+      var wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: '#ddd',
+        progressColor: 'black',
+        barWidth: 4,
+        responsive: true,
+        height: 90,
+        barRadius: 4,
+      });
+
+      wavesurfer.load('media/life-is-good.mp3');
+
+      playBtn.onclick = function () {
+        wavesurfer.playPause();
+        if (playBtn.src.includes('play.svg')) {
+          playBtn.src = 'media/pause.svg';
+        } else {
+          playBtn.src = 'media/play.svg';
+        }
+      };
+
+      wavesurfer.on('finish', function () {
+        playBtn.src = 'media/play.svg';
+        wavesurfer.stop();
+      });
+
+      // 2 track
+      //   var playBtn = document.getElementById('playBtn');
+
+      //   var wavesurfer = WaveSurfer.create({
+      //     container: '#waveform',
+      //     waveColor: '#ddd',
+      //     progressColor: 'black',
+      //     barWidth: 4,
+      //     responsive: true,
+      //     height: 90,
+      //     barRadius: 4,
+      //   });
+
+      //   wavesurfer.load('media/chicago-freestyle.mp3');
+
+      //   playBtn.onclick = function () {
+      //     wavesurfer.playPause();
+      //     if (playBtn.src.includes('play.svg')) {
+      //       playBtn.src = 'media/pause.svg';
+      //     } else {
+      //       playBtn.src = 'media/play.svg';
+      //     }
+      //   };
+
+      //   wavesurfer.on('finish', function () {
+      //     playBtn.src = 'media/play.svg';
+      //     wavesurfer.stop();
+      //   });
+    </script>
+  </body>
+</html>
